@@ -26,7 +26,7 @@ typedef enum
 {
     R_NOK,
     R_OK
-}Std_ReturnType;
+} Std_ReturnType;
 
 /* Section : Macro Declarations */
 

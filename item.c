@@ -84,6 +84,7 @@ uint8 add_item(void (*fram)(void))
         gotoxy(x+3,y);
         printf("Enter item price : ");
         scanf("%i",&(item.price));
+        gotoxy(x+4,y);
         printf("Enter item quantity : ");
         scanf("%i",&(item.quantity));
         fprintf(current_data,"%s %i %i %s %s\n",item.name,item.price,item.quantity,item.company,item.id);
@@ -199,7 +200,7 @@ void delete_item(void (*fram)(void))
     }
     else if(NOT_FOUND == found)
     {
-        system("cls");
+        CLEAR_CONSOLE();
         fram();
         gotoxy(x,y);
         printf("Item not found :(");
@@ -214,7 +215,7 @@ void delete_item(void (*fram)(void))
     }
     else if(FOUND == found)
     {
-        system("cls");
+        CLEAR_CONSOLE();
         fram();
         gotoxy(x,y);
         printf("Item is deleted :)");
@@ -278,7 +279,7 @@ void edit_item(void (*fram)(void))
     }
     else if(NOT_FOUND == found)
     {
-        system("cls");
+        CLEAR_CONSOLE();
         fram();
         gotoxy(x,y);
         printf("Item not found :(");
@@ -293,7 +294,7 @@ void edit_item(void (*fram)(void))
     }
     else if(FOUND == found)
     {
-        system("cls");
+        CLEAR_CONSOLE();
         fram();
         gotoxy(x,y);
         printf("\xB2\xB2 New data \xB2\xB2");
@@ -336,7 +337,7 @@ void search_item(void (*fram)(void))
         }
         if((strcmp(search,item.name) == 0) || (strcmp(search,item.id) == 0))
         {
-            system("cls");
+            CLEAR_CONSOLE();
             fram();
             gotoxy(x,y);
             printf("Item Name : %s",item.name);
@@ -366,7 +367,7 @@ void search_item(void (*fram)(void))
     }
     else if(NOT_FOUND == found)
     {
-        system("cls");
+        CLEAR_CONSOLE();
         fram();
         gotoxy(x,y);
         printf("Item not found :(");
@@ -425,7 +426,7 @@ void items_list(void (*fram)(void))
             uint8 chooies = 0;
             fgetpos(current_data,&(poses[counter]));
             list(current_data,x,y,fram);
-            again:
+again:
             gotoxy(26,15);
             printf("Main Menu <Enter>          Previous <4>          Next <6> :");
             chooies = getch();
@@ -469,7 +470,7 @@ void items_list(void (*fram)(void))
 void list(FILE *_data,uint8 x,uint8 y,void (*fram)(void))
 {
     uint8 counter = 0;
-    system("cls");
+    CLEAR_CONSOLE();
     fram();
     gotoxy(x,y);
     printf("Item");

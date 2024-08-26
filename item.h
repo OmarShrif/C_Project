@@ -17,17 +17,18 @@
 #include<time.h>
 
 #include "std_types.h"
+#include "console.h"
 
 /* Section : Data Type Declarations */
 
 typedef struct
 {
     uint8 name[18];
-    uint8 company[18];
     uint8 id[10];
+    uint8 company[18];
     uint32 price;
     uint32 quantity;
-}NewItem;
+} NewItem;
 
 extern FILE *new_data;
 extern FILE *current_data;

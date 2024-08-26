@@ -1,20 +1,29 @@
 # depslib dependency file v1.0
-1724655097 source:c:\users\pr7\desktop\cb_workspace\c_language\product management system\item.c
+1724710017 source:c:\users\pr7\desktop\cb_workspace\c_language\product management system\item.c
 	"item.h"
 
-1724653837 c:\users\pr7\desktop\cb_workspace\c_language\product management system\item.h
+1724710024 c:\users\pr7\desktop\cb_workspace\c_language\product management system\item.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	<windows.h>
 	<time.h>
 	"std_types.h"
+	"console.h"
 
 1724415470 c:\users\pr7\desktop\cb_workspace\c_language\product management system\std_types.h
 
-1724652994 source:c:\users\pr7\desktop\cb_workspace\c_language\product management system\main.c
+1724709964 source:c:\users\pr7\desktop\cb_workspace\c_language\product management system\main.c
 	"main.h"
 
-1724356387 c:\users\pr7\desktop\cb_workspace\c_language\product management system\main.h
+1724710037 c:\users\pr7\desktop\cb_workspace\c_language\product management system\main.h
+	"system.h"
+
+1724710141 c:\users\pr7\desktop\cb_workspace\c_language\product management system\console.h
+
+1724709946 c:\users\pr7\desktop\cb_workspace\c_language\product management system\system.h
 	"item.h"
+
+1724709976 source:c:\users\pr7\desktop\cb_workspace\c_language\product management system\system.c
+	"system.h"
 
