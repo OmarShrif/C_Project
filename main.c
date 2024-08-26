@@ -4,7 +4,7 @@
 #include "main.h"
 
 void main(void)
-{/*
+{
     uint8 enter = WRONG;
     uint8 triels = 0 ;
     system("color F1");
@@ -36,7 +36,7 @@ void main(void)
         printf("\n\n\n\n\n\n\n\n\n\n\t\t\t\t SYSTEM OUT \n\n\n\n\n\n\n\n\n\n");
         exit(0);
     }
-    else{/* Nothing *///}
+    else{/* Nothing */}
 
     while(1)
     {
@@ -99,8 +99,8 @@ void frame(void)
 void wel_come(void)
 {
     frame();
-    gotoxy(10,37);
-    printf("WELCOME TO PRODUCT MANAGEMENT SYSTEM");
+    gotoxy(10,40);
+    printf("WELCOME TO STOCK MANAGEMENT SYSTEM");
     gotoxy(14,49);
     printf("CAIRO - EGYPT");
     gotoxy(18,30);
@@ -194,27 +194,27 @@ void menu(void)
     {
         case 1 :
         {
-            add_item();
+            add_item(frame);
             break;
         }
         case 2 :
         {
-            delete_item();
+            delete_item(frame);
             break;
         }
         case 3 :
         {
-            edit_item();
+            edit_item(frame);
             break;
         }
         case 4 :
         {
-            search_item();
+            search_item(frame);
             break;
         }
         case 5 :
         {
-            items_list();
+            items_list(frame);
             break;
         }
         case 6 :

@@ -22,10 +22,11 @@
 
 typedef struct
 {
-    uint8  productname[40],productcomp[40],c;
-    uint32 productid;
+    uint8 name[18];
+    uint8 company[18];
+    uint8 id[10];
     uint32 price;
-    uint32 Qnt;
+    uint32 quantity;
 }NewItem;
 
 extern FILE *new_data;
@@ -36,15 +37,18 @@ extern FILE *current_data;
 #define _new        "new_data.txt"
 #define _current    "current_data.txt"
 
+#define NOT_FOUND   0
+#define FOUND       1
+
 /* Section : Macro Functions Declarations */
 
 /* Section : Functions Declarations */
 
-void add_item(void);
-void delete_item(void);
-void edit_item(void);
-void search_item(void);
-void items_list(void);
+uint8 add_item(void (*fram)(void));
+void delete_item(void (*fram)(void));
+void edit_item(void (*fram)(void));
+void search_item(void (*fram)(void));
+void items_list(void (*fram)(void));
 
 void gotoxy(uint8 x,uint8 y);
 

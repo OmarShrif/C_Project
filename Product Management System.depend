@@ -1,8 +1,8 @@
 # depslib dependency file v1.0
-1724522253 source:c:\users\pr7\desktop\cb_workspace\c_language\product management system\item.c
+1724655097 source:c:\users\pr7\desktop\cb_workspace\c_language\product management system\item.c
 	"item.h"
 
-1724417842 c:\users\pr7\desktop\cb_workspace\c_language\product management system\item.h
+1724653837 c:\users\pr7\desktop\cb_workspace\c_language\product management system\item.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -12,7 +12,7 @@
 
 1724415470 c:\users\pr7\desktop\cb_workspace\c_language\product management system\std_types.h
 
-1724509775 source:c:\users\pr7\desktop\cb_workspace\c_language\product management system\main.c
+1724652994 source:c:\users\pr7\desktop\cb_workspace\c_language\product management system\main.c
 	"main.h"
 
 1724356387 c:\users\pr7\desktop\cb_workspace\c_language\product management system\main.h
