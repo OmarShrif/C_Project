@@ -3,7 +3,7 @@
 
 #define CLEAR_CONSOLE()     system("cls")
 
-#define COLOR()     system(BACKGROUND_BLUE_FONT_LIGHT_WHITE)
+#define COLOR(X)     system(X)
 
 // 0.BACKGROUND_BLACK
 #define BACKGROUND_BLACK_FONT_BLUE              "color 01"

@@ -24,10 +24,10 @@
 typedef struct
 {
     uint8 name[18];
-    uint8 id[10];
+    uint8 code[10];
     uint8 company[18];
-    uint32 price;
-    uint32 quantity;
+    uint8 price[15];
+    uint8 quantity[15];
 } NewItem;
 
 extern FILE *new_data;

@@ -24,12 +24,12 @@ uint8 add_item(void (*fram)(void))
     uint8 y = 15;
     uint8 one = 1;
     uint8 name[18] = {0};
-    uint8 id[10] = {0};
+    uint8 code[10] = {0};
     uint8 found = NOT_FOUND;
     fpos_t pos = 0;
     current_data = fopen(_current,"a+");
 
-    while((fscanf(current_data,"%s %i %i %s %s",&(item.name),&(item.price),&(item.quantity),&(item.company),&(item.id))) != EOF)
+    while((fscanf(current_data,"%s %i %i %s %s",&(item.name),&(item.price),&(item.quantity),&(item.company),&(item.code))) != EOF)
     {
         if(1 == one)
         {
@@ -66,12 +66,12 @@ uint8 add_item(void (*fram)(void))
             gets(item.name);
         }
         gotoxy(x+1,y);
-        printf("Enter item id : ");
-        gets(item.id);
-        while(!strlen(item.id))
+        printf("Enter item code : ");
+        gets(item.code);
+        while(!strlen(item.code))
         {
             gotoxy(x+1,31);
-            gets(item.id);
+            gets(item.code);
         }
         gotoxy(x+2,y);
         printf("Enter company name : ");
@@ -82,12 +82,22 @@ uint8 add_item(void (*fram)(void))
             gets(item.company);
         }
         gotoxy(x+3,y);
-        printf("Enter item price : ");
-        scanf("%i",&(item.price));
+        printf("Enter item price : $");
+        gets(item.price);
+        while(!strlen(item.price))
+        {
+            gotoxy(x+3,35);
+            gets(item.price);
+        }
         gotoxy(x+4,y);
         printf("Enter item quantity : ");
-        scanf("%i",&(item.quantity));
-        fprintf(current_data,"%s %i %i %s %s\n",item.name,item.price,item.quantity,item.company,item.id);
+        gets(item.quantity);
+        while(!strlen(item.quantity))
+        {
+            gotoxy(x+4,37);
+            gets(item.quantity);
+        }
+        fprintf(current_data,"%s %s %s %s %s\n",item.name,item.price,item.quantity,item.company,item.code);
         fclose(current_data);
         gotoxy(26,15);
         printf("Press Enter to continue ...");
@@ -98,24 +108,24 @@ uint8 add_item(void (*fram)(void))
         one = 1;
         pos = 0;
         fsetpos(current_data,&pos);
-        while((fscanf(current_data,"%s %i %i %s %s",&(item.name),&(item.price),&(item.quantity),&(item.company),&(item.id))) != EOF)
+        while((fscanf(current_data,"%s %s %s %s %s",&(item.name),&(item.price),&(item.quantity),&(item.company),&(item.code))) != EOF)
         {
             if(1 == one)
             {
                 one++;
                 gotoxy(x+1,y);
-                printf("Enter item id : ");
-                gets(id);
-                while(!strlen(id))
+                printf("Enter item code : ");
+                gets(code);
+                while(!strlen(code))
                 {
                     gotoxy(x+1,31);
-                    gets(id);
+                    gets(code);
                 }
             }
-            if(strcmp(id,item.id) == 0)
+            if(strcmp(code,item.code) == 0)
             {
                 gotoxy(x+2,y);
-                printf("item id already exists !!");
+                printf("item code already exists !!");
                 found = FOUND;
                 fclose(current_data);
                 gotoxy(26,15);
@@ -127,7 +137,7 @@ uint8 add_item(void (*fram)(void))
         if(NOT_FOUND == found)
         {
             strcpy(item.name,name);
-            strcpy(item.id,id);
+            strcpy(item.code,code);
             gotoxy(x+2,y);
             printf("Enter company name : ");
             gets(item.company);
@@ -137,12 +147,22 @@ uint8 add_item(void (*fram)(void))
                 gets(item.company);
             }
             gotoxy(x+3,y);
-            printf("Enter item price : ");
-            scanf("%i",&(item.price));
+            printf("Enter item price : $");
+            gets(item.price);
+            while(!strlen(item.price))
+            {
+                gotoxy(x+3,35);
+                gets(item.price);
+            }
             gotoxy(x+4,y);
             printf("Enter item quantity : ");
-            scanf("%i",&(item.quantity));
-            fprintf(current_data,"%s %i %i %s %s\n",item.name,item.price,item.quantity,item.company,item.id);
+            gets(item.quantity);
+            while(!strlen(item.quantity))
+            {
+                gotoxy(x+4,37);
+                gets(item.quantity);
+            }
+            fprintf(current_data,"%s %s %s %s %s\n",item.name,item.price,item.quantity,item.company,item.code);
             fclose(current_data);
             gotoxy(26,15);
             printf("Press Enter to continue ...");
@@ -162,13 +182,13 @@ void delete_item(void (*fram)(void))
     current_data = fopen(_current,"r");
     new_data = fopen(_new,"w");
 
-    while((fscanf(current_data,"%s %i %i %s %s",&(item.name),&(item.price),&(item.quantity),&(item.company),&(item.id))) != EOF)
+    while((fscanf(current_data,"%s %s %s %s %s",&(item.name),&(item.price),&(item.quantity),&(item.company),&(item.code))) != EOF)
     {
         if(1 == one)
         {
             one++;
             gotoxy(x,y);
-            printf("Enter item name or id : ");
+            printf("Enter item name or code : ");
             gets(search);
             while(!strlen(search))
             {
@@ -176,13 +196,13 @@ void delete_item(void (*fram)(void))
                 gets(search);
             }
         }
-        if((strcmp(search,item.name) == 0) || (strcmp(search,item.id) == 0))
+        if((strcmp(search,item.name) == 0) || (strcmp(search,item.code) == 0))
         {
             found = FOUND;
         }
         else
         {
-            fprintf(new_data,"%s %i %i %s %s\n",item.name,item.price,item.quantity,item.company,item.id);
+            fprintf(new_data,"%s %s %s %s %s\n",item.name,item.price,item.quantity,item.company,item.code);
         }
     }
     if(1 == one)
@@ -241,13 +261,13 @@ void edit_item(void (*fram)(void))
     current_data = fopen(_current,"r");
     new_data = fopen(_new,"w");
 
-    while((fscanf(current_data,"%s %i %i %s %s",&(item.name),&(item.price),&(item.quantity),&(item.company),&(item.id))) != EOF)
+    while((fscanf(current_data,"%s %s %s %s %s",&(item.name),&(item.price),&(item.quantity),&(item.company),&(item.code))) != EOF)
     {
         if(1 == one)
         {
             one++;
             gotoxy(x,y);
-            printf("Enter item name or id : ");
+            printf("Enter item name or code : ");
             gets(search);
             while(!strlen(search))
             {
@@ -255,14 +275,14 @@ void edit_item(void (*fram)(void))
                 gets(search);
             }
         }
-        if((strcmp(search,item.name) == 0) || (strcmp(search,item.id) == 0))
+        if((strcmp(search,item.name) == 0) || (strcmp(search,item.code) == 0))
         {
             found = FOUND;
             edit = item;
         }
         else
         {
-            fprintf(new_data,"%s %i %i %s %s\n",item.name,item.price,item.quantity,item.company,item.id);
+            fprintf(new_data,"%s %s %s %s %s\n",item.name,item.price,item.quantity,item.company,item.code);
         }
     }
     if(1 == one)
@@ -272,7 +292,7 @@ void edit_item(void (*fram)(void))
         fclose(new_data);
         fclose(current_data);
         remove(_new);
-        Sleep(20);
+        Sleep(50);
         gotoxy(26,15);
         printf("Press Enter to continue ...");
         while(getch() != ENTER);
@@ -287,7 +307,7 @@ void edit_item(void (*fram)(void))
         fclose(current_data);
         remove(_current);
         rename(_new,_current);
-        Sleep(20);
+        Sleep(50);
         gotoxy(26,15);
         printf("Press Enter to continue ...");
         while(getch() != ENTER);
@@ -302,11 +322,11 @@ void edit_item(void (*fram)(void))
         fclose(current_data);
         remove(_current);
         rename(_new,_current);
-        Sleep(20);
+        Sleep(50);
         if(add_item(fram) == FOUND)
         {
             current_data = fopen(_current,"a+");
-            fprintf(current_data,"%s %i %i %s %s\n",edit.name,edit.price,edit.quantity,edit.company,edit.id);
+            fprintf(current_data,"%s %s %s %s %s\n",edit.name,edit.price,edit.quantity,edit.company,edit.code);
             fclose(current_data);
         }
     }
@@ -321,13 +341,13 @@ void search_item(void (*fram)(void))
     uint8 found = NOT_FOUND;
     current_data = fopen(_current,"r");
 
-    while((fscanf(current_data,"%s %i %i %s %s",&(item.name),&(item.price),&(item.quantity),&(item.company),&(item.id))) != EOF)
+    while((fscanf(current_data,"%s %s %s %s %s",&(item.name),&(item.price),&(item.quantity),&(item.company),&(item.code))) != EOF)
     {
         if(1 == one)
         {
             one++;
             gotoxy(x,y);
-            printf("Enter item name or id : ");
+            printf("Enter item name or code : ");
             gets(search);
             while(!strlen(search))
             {
@@ -335,20 +355,20 @@ void search_item(void (*fram)(void))
                 gets(search);
             }
         }
-        if((strcmp(search,item.name) == 0) || (strcmp(search,item.id) == 0))
+        if((strcmp(search,item.name) == 0) || (strcmp(search,item.code) == 0))
         {
             CLEAR_CONSOLE();
             fram();
             gotoxy(x,y);
             printf("Item Name : %s",item.name);
             gotoxy(x+1,y);
-            printf("Item Price : %i",item.price);
+            printf("Item Price : $%s",item.price);
             gotoxy(x+2,y);
-            printf("Item Quantity : %i",item.quantity);
+            printf("Item Quantity : %s",item.quantity);
             gotoxy(x+3,y);
             printf("Item Company : %s",item.company);
             gotoxy(x+4,y);
-            printf("Item Id : %s",item.id);
+            printf("Item Id : %s",item.code);
             gotoxy(26,15);
             printf("Press Enter to continue ...");
             while(getch() != ENTER);
@@ -386,7 +406,7 @@ void items_list(void (*fram)(void))
     fpos_t pos = 0;
     current_data = fopen(_current,"r");
 
-    while((fscanf(current_data,"%s %i %i %s %s",&(item.name),&(item.price),&(item.quantity),&(item.company),&(item.id))) != EOF)
+    while((fscanf(current_data,"%s %s %s %s %s",&(item.name),&(item.price),&(item.quantity),&(item.company),&(item.code))) != EOF)
     {
         number_of_items++;
     }
@@ -475,28 +495,28 @@ void list(FILE *_data,uint8 x,uint8 y,void (*fram)(void))
     gotoxy(x,y);
     printf("Item");
     gotoxy(x,y+20);
-    printf("Price");
+    printf("Price ($)");
     gotoxy(x,y+40);
     printf("Quantity");
     gotoxy(x,y+60);
     printf("Company");
     gotoxy(x,y+80);
-    printf("Id");
+    printf("Code");
     for(counter = 0 ; counter<15 ; counter++)
     {
-        if((fscanf(_data,"%s %i %i %s %s",&(item.name),&(item.price),&(item.quantity),&(item.company),&(item.id))) != EOF)
+        if((fscanf(_data,"%s %s %s %s %s",&(item.name),&(item.price),&(item.quantity),&(item.company),&(item.code))) != EOF)
         {
             x++;
             gotoxy(x,y);
             printf("%s",item.name);
             gotoxy(x,y+20);
-            printf("%i",item.price);
+            printf("%s",item.price);
             gotoxy(x,y+40);
-            printf("%i",item.quantity);
+            printf("%s",item.quantity);
             gotoxy(x,y+60);
             printf("%s",item.company);
             gotoxy(x,y+80);
-            printf("%s",item.id);
+            printf("%s",item.code);
         }
         else
         {

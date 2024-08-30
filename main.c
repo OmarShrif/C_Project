@@ -8,7 +8,7 @@ void main(void)
     uint8 enter = WRONG;
     uint8 triels = 0 ;
 
-    COLOR();
+    COLOR(BACKGROUND_BLUE_FONT_LIGHT_WHITE);
     wel_come();
 
     while(triels<TRIELS)
