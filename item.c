@@ -457,6 +457,7 @@ again:
             if(chooies == ENTER)
             {
                 fclose(current_data);
+                free(poses);
                 break;
             }
             else if(chooies == '4')

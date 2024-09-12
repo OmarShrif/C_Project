@@ -184,7 +184,7 @@ void menu(void)
     {
         gotoxy(19,44);
         CLEAR_CONSOLE();
-        printf("\n\n\n\n\n\n\n\n\n\n\t\t\t\t SYSTEM OUT \n\n\n\n\n\n\n\n\n\n");
+        printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\t\t\t\t\t\t\t SYSTEM OUT \n\n\n\n\n\n\n\n\n\n\n\n\n");
         exit(0);
     }
     default :
